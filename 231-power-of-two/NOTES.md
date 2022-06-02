@@ -24,6 +24,6 @@ Time complexity = O(1)
 
 ### My explanation
 
-The trick is that when a number can be expressed in 2^k then the AND gate of n and n-1 results in 0.
+The trick is that when a number can be expressed in 2<sup>k</sup> then the AND gate of n and n-1 results in 0.
 So in this solution we just check if number is above 0 and n & n - 1
 
