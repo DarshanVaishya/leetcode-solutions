@@ -1,26 +1,23 @@
 class Solution {
     public boolean findRotation(int[][] mat, int[][] target) {
-        int count = 0;
-        
-        while(count < 4) {
-            if(Arrays.deepEquals(target, mat)) {
+        // On 4th rotation the matrix will be same as start
+        for(int i = 0; i < 4; i++) {
+            if(Arrays.deepEquals(mat, target)) {
                 return true;
             }
-            
             mat = rotateMatrix(mat);
-            count++;
         }
         
         return false;
     }
     
     public int[][] rotateMatrix(int[][] matrix) {
-        int m = matrix.length;
-        int[][] res = new int[m][m];
+        int n = matrix.length;
+        int[][] res = new int[n][n];
         
-        for(int i = 0; i < m; i++) {
-            for(int j = 0; j < m; j++) {
-                res[j][m - i - 1] = matrix[i][j];
+        for(int i = 0; i < n; i++) {
+            for(int j = 0; j < n; j++) {
+                res[j][n - i - 1] = matrix[i][j];
             }
         }
         
