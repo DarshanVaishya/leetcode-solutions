@@ -12,14 +12,7 @@ class Solution {
         return res;
     }
     
-    public static int getLength(int num) {
-        int len = 0;
-        
-        while(num != 0) {
-            num /= 10;
-            len++;
-        }
-        
-        return len;
+    public int getLength(int num) {
+        return (int) (Math.log10(num)) + 1;
     }
 }
