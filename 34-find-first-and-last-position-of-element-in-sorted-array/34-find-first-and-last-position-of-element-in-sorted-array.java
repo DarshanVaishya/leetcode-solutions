@@ -1,9 +1,13 @@
 class Solution {
     public int[] searchRange(int[] nums, int target) {
-        int startIdx = binarySearch(nums, target, true);
-        int endIdx   = binarySearch(nums, target, false);
+        int[] res = {-1, -1};
         
-        return new int[] {startIdx, endIdx};
+        res[0] = binarySearch(nums, target, true);
+        if(res[0] != -1) {
+            res[1] = binarySearch(nums, target, false);
+        }
+        
+        return res;
     }
     
     public int binarySearch(int[] nums, int target, boolean findStartIndex) {
