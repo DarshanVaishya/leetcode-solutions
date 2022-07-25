@@ -1,27 +1,33 @@
 class Solution {
     public int search(int[] arr, int target) {
+        int n = arr.length;
         int start = 0;
-        int end  = arr.length - 1;
+        int end = n - 1;
         
         while(start <= end) {
-            int mid = start + (end - start) / 2;
-            int num = arr[mid];
+            int mid = start +  (end - start) / 2;
             
-            // Check whether arr[mid] and target are in the same half or not
-            // This condition is shorter version of
-            // ((target < arr[0] && arr[mid] < arr[0]) || (target >= arr[0] && arr[mid] >= arr[0]))
-            if(!(target < arr[0]) == (arr[mid] < arr[0])) {
-                num = target < arr[0] ? Integer.MIN_VALUE : Integer.MAX_VALUE;
-            }
-            
-            if(num == target) {
+            if(arr[mid] == target) {
                 return mid;
             }
             
-            if(num < target) {
-                start = mid + 1;
-            } else {
-                end = mid - 1;
+            // Left part is sorted
+            if(arr[start] <= arr[mid]) {
+                // if target is in the sorted part
+                if(arr[start] <= target && target <= arr[mid]) {
+                    end = mid - 1;
+                } else {
+                    start = mid + 1;
+                }
+            }
+            // right part is sorted
+            else { 
+                // if target is in the sorted part
+                if(arr[mid] <= target && target <= arr[end]) {
+                    start = mid + 1;
+                } else {
+                    end = mid - 1;
+                }
             }
         }
         
