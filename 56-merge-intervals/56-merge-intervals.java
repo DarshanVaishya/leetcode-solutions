@@ -4,13 +4,15 @@ class Solution {
     
     public int[][] merge(int[][] intervals) {
         int n = intervals.length;
+        if(n <= 1) return intervals;
+        
         int[][] sortedIntervals = intervals.clone();
         Arrays.sort(sortedIntervals, (a, b) -> Integer.compare(a[0], b[0]));
         
         int[] storedInterval = sortedIntervals[0];
         List<int[]> res = new ArrayList<>();
         
-        for(int i = 0; i < n; i++) {
+        for(int i = 1; i < n; i++) {
             int[] currentInterval = sortedIntervals[i];
             
             if(storedInterval[END] >= currentInterval[START]) {
