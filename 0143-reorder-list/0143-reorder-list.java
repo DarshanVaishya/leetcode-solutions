@@ -32,14 +32,14 @@ class Solution {
         ListNode first = head;
         second = prev;
         while(second != null) {
-            ListNode temp1 = first.next;
-            ListNode temp2 = second.next;
+            ListNode tmp1 = first.next;
+            ListNode tmp2 = second.next;
 
             first.next = second;
-            second.next = temp1;
+            second.next = tmp1;
 
-            first = temp1;
-            second = temp2;
+            first = tmp1;
+            second = tmp2;
         }
     }
 }
