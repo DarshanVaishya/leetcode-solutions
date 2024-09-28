@@ -4,12 +4,11 @@ class Solution {
         int left = 0;
         int res = 0;
         for(int right = 0; right < s.length(); right++) {
-            char currChar = s.charAt(right);
-            while(seen.contains(currChar)) {
-                seen.remove(currChar);
+            while(seen.contains(s.charAt(right))) {
+                seen.remove(s.charAt(left));
                 left++;
             }
-            seen.add(currChar);
+            seen.add(s.charAt(right));
             res = Math.max(res, right - left + 1);
         }
 
