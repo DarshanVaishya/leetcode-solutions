@@ -7,7 +7,7 @@ class Solution {
             targetC[s1.charAt(i) - 'a']++;
         }
     
-        // Initialize the window counts
+        // Initialize the window counts for s2
         int left = 0;
         int[] currC = new int[26];
         for(int i = 0; i < s1.length(); i++) {
@@ -31,8 +31,6 @@ class Solution {
         for(int i = 0; i < arr1.length; i++) {
             if(arr1[i] != arr2[i]) return false;
         }
-
-System.out.println("RETURNING TRUE");
         return true;
     }
 }
