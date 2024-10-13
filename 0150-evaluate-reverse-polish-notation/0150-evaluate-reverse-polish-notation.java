@@ -1,30 +1,36 @@
 class Solution {
     public int evalRPN(String[] tokens) {
-        Stack<String> stack = new Stack<>();
-        int res = 0;
+        Stack<Integer> stack = new Stack<>();
 
-        for(String token : tokens) {
-            if(token.equals("+") || token.equals("-") || token.equals("*") || token.equals("/")) {
-                int b = Integer.parseInt(stack.pop());
-                int a = Integer.parseInt(stack.pop());
-                System.out.println(a + " " + token + " " + b);
-                if(token.equals("+"))
-                        res = a + b;
-                else if(token.equals("-"))
-                        res = a - b;
-                else if(token.equals("*"))
-                        res = a * b;
-                else if(token.equals("/"))
-                        res = a / b;
-                System.out.println(res);
-                stack.push(String.valueOf(res));
-            } else {
-                stack.push(token);
+        for (String token : tokens) {
+            if (!"+-*/".contains(token)) {
+                stack.push(Integer.valueOf(token));
+                continue;
             }
+
+            int number2 = stack.pop();
+            int number1 = stack.pop();
+
+            int result = 0;
+
+            switch (token) {
+                case "+":
+                    result = number1 + number2;
+                    break;
+                case "-":
+                    result = number1 - number2;
+                    break;
+                case "*":
+                    result = number1 * number2;
+                    break;
+                case "/":
+                    result = number1 / number2;
+                    break;
+            }
+
+            stack.push(result);
         }
 
-        if(stack.size() == 1 && res == 0) res = Integer.parseInt(stack.pop());
-
-        return res;
+        return stack.pop();
     }
 }
