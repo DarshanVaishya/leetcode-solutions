@@ -1,16 +1,19 @@
 class Solution {
     public int[] dailyTemperatures(int[] arr) {
         int[] res = new int[arr.length];
-        Stack<Integer> ms = new Stack<>();
+        int hottest = 0;
 
-        for(int i = 0; i < arr.length; i++) {
-            if(ms.size() == 0) ms.push(i);
-            while(ms.size() > 0 && arr[i] > arr[ms.peek()]) {
-                int day = ms.pop();
-                res[day] = i - day;
+        for(int i = arr.length - 1; i >= 0; i--) {
+            if(arr[i] >= hottest) {
+                hottest = arr[i];
+                continue;
             }
 
-            ms.push(i);
+            int days = 1;
+            while(arr[i + days] <= arr[i]) {
+                days += res[i + days];
+            }
+            res[i] = days;
         }
 
         return res;
